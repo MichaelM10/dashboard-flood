@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('sensor_id');
             $table->string('sensor_name')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('type')->nullable();
             $table->string('visibility')->nullable();
             $table->string('access_password')->nullable();
             $table->double('gps_latitude')->nullable();

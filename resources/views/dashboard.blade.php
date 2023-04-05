@@ -40,11 +40,54 @@
                     </div>
                 </div>
                 <div class="card-body text-center">
+                    <!-- Sensor List -->
                     @forelse($sensors as $sensor)
-                        <div class="card">
-                            <div class="card-header">{{$sensor->sensor_name}}</div>
+                        <div class="card text-start">
+                            <!-- Card Header -->
+                                <!--  No Card Header  -->
+                            <!-- Card Body -->
                             <div class="card-body">
-                                
+                                <div class="row">
+                                    <div class="col-md">
+                                        <h6 class="card-title"> {{ $sensor->sensor_name }} </h6>
+                                        <!-- Sensor Id -->
+                                        <div class="row gx-0">
+                                            <div class="col-sm-2">
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <p class="fw-normal card-text">Sensor Id </p>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <p class="fw-normal card-text"> : </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <p class="fw-light card-text"> {{ $sensor->sensor_id }} </p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Sensor Id -->
+                                        <div class="row gx-0">
+                                            <div class="col-sm-2">
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <p class="fw-normal card-text">Visibility </p>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <p class="fw-normal card-text"> : </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <p class="fw-light card-text"> {{ $sensor->visibility }} </p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modify button -->
+                                        <button type="button" class="btn btn-outline-secondary mt-5">Modify</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @empty

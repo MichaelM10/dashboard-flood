@@ -22,10 +22,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('sensors')->insert([
-            // 'sensor_id' => "SEN-F-00001",
             'sensor_name' => "Unnamed Sensor",
+            'type' => "F",
+            'visibility' => "Not set",
             'is_activated' => false,
+            'access_password' => "k10AX#bZ!",
             'activation_password' => "9218cbVmX2#",
+        ]);
+
+        DB::table('sensor_fields')->insert([
+            'sensor_id' => "1",
+            'field_name' => "Water Level",
+            'field_type' => "String",
         ]);
     }
 }

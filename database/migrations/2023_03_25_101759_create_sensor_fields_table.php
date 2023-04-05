@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id('field_id');
             $table->foreignId('sensor_id')->references('sensor_id')->on('sensors');
             $table->string('field_name');
-            $table->string('field_type');
-            $table->integer('integer_value')->nullable;
-            $table->integer('double_value')->nullable;
-            $table->string('string_value')->nullable;
-            $table->boolean('boolean_value')->nullable;
+            $table->string('field_value')->nullable();
+            $table->string('description')->nullable();
+            // $table->integer('integer_value')->nullable;
+            // $table->double('double_value')->nullable;
+            // $table->string('string_value')->nullable;
+            // $table->boolean('boolean_value')->nullable;
             $table->timestamps();
         });
     }
