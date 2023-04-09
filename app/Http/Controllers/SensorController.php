@@ -41,7 +41,14 @@ class SensorController extends Controller
         }
     }
 
-    private function confirmActivation(){
+    public function indexModify(Request $request){
 
+        $sensor = json_decode($request->sensor);
+
+        return view("modify.modify",['sensor' => $sensor]);
+    }
+
+    public function updateSensor(Request $request){
+        
     }
 }

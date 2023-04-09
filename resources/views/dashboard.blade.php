@@ -85,7 +85,13 @@
                                         </div>
 
                                         <!-- Modify button -->
-                                        <button type="button" class="btn btn-outline-secondary mt-5">Modify</button>
+                                        <form method="post" action=" {{url('/sensor/modify')}} ">
+                                            @csrf
+                                            <div class="visually-hidden disabled">
+                                                <input type="text" class="form-control" id="sensor" name="sensor" autocomplete="chrome-off" value="{{ $sensor }}">
+                                            </div>
+                                            <button type="submit" class="btn btn-outline-secondary mt-5">Modify</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

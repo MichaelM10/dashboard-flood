@@ -31,9 +31,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('sensor_fields')->insert([
-            'sensor_id' => "1",
+            'field_id' => 1,
+            'sensor_id' => 1,
             'field_name' => "Water Level",
-            'field_type' => "String",
+            'field_value' => "",
+            'description' => "",
         ]);
     }
 }
