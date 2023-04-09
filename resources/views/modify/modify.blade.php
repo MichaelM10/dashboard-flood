@@ -15,16 +15,17 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form class="row g-3" autocomplete="off" action="{{url('/save-modify')}}">
+                    <form class="row g-3" autocomplete="off" action="{{url('/save-modify')}}" method="post">
+                        @csrf
                         <!-- Row 1 -->
                         <div class="row mt-3 justify-content-center">
                             <div class="col-sm-4">
                                 <label for="sensor_id" class="form-label">{{__('SensorKu Code')}}</label>
-                                <input type="number" class="form-control" id="sensor_id" name="sensor_id" value="{{ $sensor->sensor_id }}" disabled>
+                                <input type="number" class="form-control" id="sensor_id" name="sensor_id" value="{{ $sensor->id }}" readonly>
                             </div>
                             <div class="col-sm-4">
                                 <label for="activation_password" class="form-label">{{__('Activation Password')}}</label>
-                                <input type="text" class="form-control" id="activation_password" name="activation_password" value="{{ $sensor->activation_password }}" disabled>
+                                <input type="text" class="form-control" id="activation_password" name="activation_password" value="{{ $sensor->activation_password }}" readonly>
                             </div>
                         </div>
 
@@ -48,7 +49,16 @@
                         </div>
                     </form>
                     <!-- <p class="mx-auto mt-5 col-sm-4 mt-1 card-text text-black-50 text-center"> {{ __("[ ? ] Use this page only to activate SensorKu sensors. To setup your own sensor, please go to the .... page") }} </p> -->
-                    
+                    @if (\Session::has('error'))
+                        <div class="alert alert-warning mt-5" role="alert">
+                            {{ \Session::get('error') }}
+                        </div>
+                    @endif
+                    @if (\Session::has('success'))
+                        <div class="alert alert-success mt-5" role="alert">
+                            {{ \Session::get('success') }}
+                        </div>
+                    @endif
                 </div>    
             </div>
         </div>

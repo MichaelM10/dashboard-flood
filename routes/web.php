@@ -24,6 +24,7 @@ Route::get('/sensor/activation',        [App\Http\Controllers\SensorController::
 Route::get('/activate-a-sensorku',      [App\Http\Controllers\SensorController::class, 'activationProcess']);
 
 Route::post('/sensor/modify',           [App\Http\Controllers\SensorController::class, 'indexModify']);
+Route::get('/sensor/modify-back',           [App\Http\Controllers\SensorController::class, 'indexModify']);
 Route::post('/save-modify',             [App\Http\Controllers\SensorController::class, 'updateSensor']);
 
 Route::post('/api/sensor/test', [App\Http\Controllers\ApiController::class, 'test']);

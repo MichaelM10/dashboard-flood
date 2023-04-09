@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bookmarks', function (Blueprint $table) {
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('sensor_id')->references('sensor_id')->on('sensors');
+            $table->foreignId('sensor_id')->references('id')->on('sensors');
             $table->timestamps();
         });
     }

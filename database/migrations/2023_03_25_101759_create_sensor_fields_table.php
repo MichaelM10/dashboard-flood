@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sensor_fields', function (Blueprint $table) {
-            $table->id('field_id');
-            $table->foreignId('sensor_id')->references('sensor_id')->on('sensors');
+            $table->id();
+            $table->foreignId('sensor_id')->references('id')->on('sensors');
             $table->string('field_name');
             $table->string('field_value')->nullable();
             $table->string('description')->nullable();

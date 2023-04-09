@@ -63,7 +63,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-1">
-                                                <p class="fw-light card-text"> {{ $sensor->sensor_id }} </p>
+                                                <p class="fw-light card-text"> {{ $sensor->id }} </p>
                                             </div>
                                         </div>
                                         

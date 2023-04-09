@@ -16,14 +16,14 @@ class SensorController extends Controller
     public function activationProcess(Request $request){
         $request_sensor_id = $request->get('sensor_id');
         $request_activation_password = $request->get('activation_password');
-        $sensor = Sensor::where('sensor_id', $request_sensor_id)->first();
+        $sensor = Sensor::find($request_sensor_id)->first();
         //Check if a sensor by the id/code issued by the user exists
         if(!empty($sensor)){
             // If sensor of the correct id/code exists
             // Check if it's already activated
             if(!$sensor->is_activated){
                 if($request_activation_password == $sensor->activation_password){
-                    Sensor::where('sensor_id', $request_sensor_id)
+                    Sensor::where('id',$request_sensor_id)
                     ->update([  'user_id' => Auth::user()->id,
                                 'is_activated' => true               
                             ]);
@@ -49,6 +49,15 @@ class SensorController extends Controller
     }
 
     public function updateSensor(Request $request){
-        
+        $request_sensor_id = $request->sensor_id;
+        $sensor = Sensor::where('sensor_id', $request_sensor_id)->first();
+
+        $sensor->sensor_id = $request_sensor_id;
+        $sensor->sensor_name = $request->sensor_name;
+        $sensor->visibility = $request->visibility;
+        $sensor->access_password = $request->access_password;
+        $sensor->update();
+        return view("modify.modify",['sensor' => $sensor, 'success'=> "Data saved successfuly!"]);
+        // return redirect('sensor/modify-back')->with('success', "Sensor successfully modified")->with('sensor', $sensor);
     }
 }
