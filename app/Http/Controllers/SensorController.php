@@ -40,7 +40,7 @@ class SensorController extends Controller
             return redirect()->back()->with('error', "SensorKu with that Id is not found, please check the packaging/casing for the correct Id")->withInput();
         }
     }
-
+    
     public function indexModify(Request $request){
 
         $sensor = json_decode($request->sensor);
@@ -50,14 +50,14 @@ class SensorController extends Controller
 
     public function updateSensor(Request $request){
         $request_sensor_id = $request->sensor_id;
-        $sensor = Sensor::where('sensor_id', $request_sensor_id)->first();
+        $sensor = Sensor::where('id', $request_sensor_id)->first();
 
-        $sensor->sensor_id = $request_sensor_id;
+        $sensor->id = $request_sensor_id;
         $sensor->sensor_name = $request->sensor_name;
         $sensor->visibility = $request->visibility;
         $sensor->access_password = $request->access_password;
         $sensor->update();
-        return view("modify.modify",['sensor' => $sensor, 'success'=> "Data saved successfuly!"]);
+        return view("modify.modify",['sensor' => $sensor])->with('success', "Data saved successfully");
         // return redirect('sensor/modify-back')->with('success', "Sensor successfully modified")->with('sensor', $sensor);
     }
 }
