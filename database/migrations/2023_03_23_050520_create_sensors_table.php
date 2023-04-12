@@ -23,6 +23,7 @@ return new class extends Migration
             $table->double('sea_level')->nullable();
             $table->boolean('is_activated');
             $table->string('activation_password');
+            $table->string('status');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

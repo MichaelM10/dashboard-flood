@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             'is_activated' => false,
             'access_password' => "k10AX#bZ!",
             'activation_password' => "9218cbVmX2#",
+            'status' => "Not set",
         ]);
 
         DB::table('sensor_fields')->insert([

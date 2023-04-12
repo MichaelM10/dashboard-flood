@@ -63,4 +63,12 @@ class SensorController extends Controller
         $request->flash();
         return view("modify.modify-back",['success' => $success]);
     }
+
+    public function addBookmark(Request $request){
+        $bookmark = new Bookmark;
+        $bookmark->user_id = Auth::user()->id;
+        $bookmark->sensor_id = $request->sensor_id;
+        $bookmark->save();
+        return redirect('/dashboard');
+    }
 }

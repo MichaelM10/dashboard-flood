@@ -5,6 +5,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+
+        <!-- Bookmark -->
         <div class="col-3">
             <div class="card">
                 <div class="card-header">
@@ -20,8 +22,13 @@
                 <div class="card-body">
                     @forelse($bookmarks as $bookmark)
                     <div class="card">
-                        <div class="card-header">
-                            <h5>{{$bookmark->sensor->sensor_name}}</h5>
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h6>{{$bookmark->sensor->sensor_name}}</h5>
+                            </div>
+                            <div class="card-text">
+                                <p>Status : {{ $bookmark->sensor->status }} </p>
+                            </div>
                         </div>
                     </div>
                     @empty
@@ -30,6 +37,8 @@
                 </div>
             </div>
         </div>
+        <!-- End of Bookmark -->
+        <!-- My Sensors -->
         <div class="col-8">
             <div class="card">
                 <div class ="card-header">
@@ -67,7 +76,7 @@
                                             </div>
                                         </div>
                                         
-                                        <!-- Sensor Id -->
+                                        <!-- Visibility -->
                                         <div class="row gx-0">
                                             <div class="col-sm-2">
                                                 <div class="row">
@@ -83,15 +92,32 @@
                                                 <p class="fw-light card-text"> {{ $sensor->visibility }} </p>
                                             </div>
                                         </div>
-
-                                        <!-- Modify button -->
-                                        <form method="post" action=" {{url('/sensor/modify')}} ">
-                                            @csrf
-                                            <div class="visually-hidden disabled">
-                                                <input type="text" class="form-control" id="sensor" name="sensor" autocomplete="chrome-off" value="{{ $sensor }}">
+                                        
+                                        <div class="row justify-content-start">
+                                            <!-- Modify button -->
+                                            <div class="col-sm-1 mx-2">
+                                                <form method="post" action=" {{url('/sensor/modify')}} ">
+                                                    @csrf
+                                                    <div class="visually-hidden">
+                                                        <input type="text" class="form-control" id="sensor" name="sensor" autocomplete="chrome-off" value="{{ $sensor }}" readonly>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-outline-secondary mt-5">Modify</button>
+                                                </form>
                                             </div>
-                                            <button type="submit" class="btn btn-outline-secondary mt-5">Modify</button>
-                                        </form>
+                                            
+                                            <!-- Bookmark button -->
+                                            <div class="col-sm-3 mx-2">
+                                                <form method="post" class="col" action=" {{url('/add-bookmark')}} ">
+                                                    @csrf
+                                                    <div class="visually-hidden">
+                                                        <input type="text" class="form-control" id="sensor_id" name="sensor_id" value="{{ $sensor->id }}" readonly>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-outline-secondary mt-5">Add to Bookmark</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- End of modify & bookmark button row -->
+
                                     </div>
                                 </div>
                             </div>
