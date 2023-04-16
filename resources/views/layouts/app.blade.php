@@ -19,7 +19,10 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
+    
+    
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -36,7 +39,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto mx-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/')}}"> Dashboard </a>
+                            <a class="nav-link" href="{{url('/sensor/activation')}}"> Dashboard </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href=""> {{ __('Map View') }} </a>
@@ -84,13 +87,20 @@
 
         <main class="py-4">
             @yield('content')
+            {{ isset($slot) ? $slot : null}}
         </main>
     </div>
+
+
     <script>
         const tooltips = document.querySelectorAll('.tt')
         tooltips.forEach(t => {
             new bootstrap.Tooltip(t);
         })
     </script>
+
+    @livewireScripts
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    @stack('scripts')
 </body>
 </html>

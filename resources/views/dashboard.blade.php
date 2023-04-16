@@ -21,20 +21,53 @@
                 </div>
                 <div class="card-body">
                     @forelse($bookmarks as $bookmark)
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h6>{{$bookmark->sensor->sensor_name}}</h5>
-                            </div>
-                            <div class="card-text">
-                                <p>Status : {{ $bookmark->sensor->status }} </p>
+                    <span href="{{url('/')}}">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h6>{{$bookmark->sensor->sensor_name}}</h5>
+                                </div>
+                                <div class="card-text">
+                                    <p>Status : {{ $bookmark->sensor->status }} </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </span>
                     @empty
                     <div class="text-black-50">{{ __('Bookmark is empty . . .') }}</div>
                     @endforelse
                 </div>
+
+                <script>
+                    // Initialize and add the map
+                    let map;
+
+                    async function initMap() {
+                    // The location of Uluru
+                    const position = { lat: -25.344, lng: 131.031 };
+                    // Request needed libraries.
+                    //@ts-ignore
+                    const { Map } = await google.maps.importLibrary("maps");
+                    const { AdvancedMarkerView } = await google.maps.importLibrary("marker");
+
+                    // The map, centered at Uluru
+                    map = new Map(document.getElementById("map"), {
+                        zoom: 4,
+                        center: position,
+                        mapId: "DEMO_MAP_ID",
+                    });
+
+                    // The marker, positioned at Uluru
+                    const marker = new AdvancedMarkerView({
+                        map: map,
+                        position: position,
+                        title: "Uluru",
+                    });
+                    }
+
+                    initMap();
+                </script>
+
             </div>
         </div>
         <!-- End of Bookmark -->
@@ -57,7 +90,7 @@
                             <!-- Card Body -->
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md">
+                                    <div class="col-8">
                                         <h6 class="card-title"> {{ $sensor->sensor_name }} </h6>
                                         <!-- Sensor Id -->
                                         <div class="row gx-0">
@@ -117,8 +150,13 @@
                                             </div>
                                         </div>
                                         <!-- End of modify & bookmark button row -->
-
                                     </div>
+
+                                    <div class="col-2">
+                                        
+                                    </div>
+                                    
+
                                 </div>
                             </div>
                         </div>
