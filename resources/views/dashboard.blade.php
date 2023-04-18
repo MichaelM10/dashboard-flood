@@ -90,7 +90,7 @@
                             <!-- Card Body -->
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col">
                                         <h6 class="card-title"> {{ $sensor->sensor_name }} </h6>
                                         <!-- Sensor Id -->
                                         <div class="row gx-0">
@@ -151,12 +151,6 @@
                                         </div>
                                         <!-- End of modify & bookmark button row -->
                                     </div>
-
-                                    <div class="col-2">
-                                        
-                                    </div>
-                                    
-
                                 </div>
                             </div>
                         </div>

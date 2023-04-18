@@ -19,10 +19,11 @@ Route::redirect('/home','/dashboard');
 
 Auth::routes();
 
-Route::get('/dashboard',                [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::get('/sensor',                [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 
-Route::get('/map',                      [App\Http\Livewire\MapLivewire::class, 'render']);
+Route::get('/dashboard',                      MapLivewire::class);
+
 
 Route::get('/sensor/activation',        [App\Http\Controllers\SensorController::class, 'index']);
 Route::get('/activate-a-sensorku',      [App\Http\Controllers\SensorController::class, 'activationProcess']);

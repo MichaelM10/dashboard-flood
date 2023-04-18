@@ -65,10 +65,21 @@ class SensorController extends Controller
     }
 
     public function addBookmark(Request $request){
-        $bookmark = new Bookmark;
-        $bookmark->user_id = Auth::user()->id;
-        $bookmark->sensor_id = $request->sensor_id;
-        $bookmark->save();
+
+        if(Bookmark::where('user_id', Auth::user()->id)->where('sensor_id', $request->sensor_id)->exists()){
+        
+        }else{
+            $newBookmark = new Bookmark;
+            $newBookmark->user_id = Auth::user()->id;
+            $newBookmark->sensor_id = $request->sensor_id;
+            $newBookmark->save();
+        }
+        return redirect('/dashboard');
+
+    }
+
+    public function removeBookmark(Request $request){
+        Bookmark::where('user_id', Auth::user()->id)->where('sensor_id', $request->sensor_id)->delete();
         return redirect('/dashboard');
     }
 }

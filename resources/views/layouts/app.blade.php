@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') - {{ config('app.name', 'SensorKu') }}</title>
+    <title>@yield('title') @stack('pagetitle') - {{ config('app.name', 'SensorKu') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -39,13 +39,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto mx-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/sensor/activation')}}"> Dashboard </a>
+                            <a class="nav-link" href="{{url('/dashboard')}}"> Dashboard </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=""> {{ __('Map View') }} </a>
+                            <a class="nav-link" href=" {{url('/sensor')}} ">{{ __('Sensor')  }}</a>
                         </li>
                     </ul>
-
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
