@@ -28,6 +28,6 @@ class HomeController extends Controller
     {
         $bookmarks = Bookmark::with('sensor')->where('user_id', Auth::user()->id)->get();
         $sensors = Sensor::with('user')->with('sensorField')->where('user_id', Auth::user()->id)->get();
-        return view('dashboard', ['bookmarks' => $bookmarks, 'sensors' => $sensors]);
+        return view('sensor-index', ['bookmarks' => $bookmarks, 'sensors' => $sensors]);
     }
 }

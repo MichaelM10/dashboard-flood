@@ -21,22 +21,41 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt("testuser123"),
         ]);
 
-        DB::table('sensors')->insert([
-            'sensor_name' => "Unnamed Sensor",
+        DB::table('sensors')->insert([[
+            'sensor_name' => "New Unnamed Sensor",
             'type' => "F",
             'visibility' => "Not set",
             'is_activated' => false,
             'access_password' => "k10AX#bZ!",
             'activation_password' => "9218cbVmX2#",
             'status' => "Not set",
+        ],
+        [
+            'sensor_name' => "NewUnnamed Sensor",
+            'type' => "F",
+            'visibility' => "Not set",
+            'is_activated' => false,
+            'access_password' => "k10AX#bZ!",
+            'activation_password' => "9218cbVmX2#",
+            'status' => "Not set",
+        ]
         ]);
 
-        DB::table('sensor_fields')->insert([
+
+        DB::table('sensor_fields')->insert([[
             'id' => 1,
             'sensor_id' => 1,
             'field_name' => "Water Level",
             'field_value' => "",
             'description' => "",
+        ],
+        [
+            'id' => 2,
+            'sensor_id' => 2,
+            'field_name' => "Water Level",
+            'field_value' => "",
+            'description' => "",
+        ]
         ]);
     }
 }
