@@ -14,7 +14,7 @@ class MapLivewire extends Component
 
     private function loadSensors(){
         $sensors = Sensor::orderBy('created_at','desc')->get();
-
+        
         $arrSensors = [];
         foreach($sensors as $sensor){
             $arrSensors[] = [

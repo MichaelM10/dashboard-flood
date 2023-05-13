@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\MapLivewire;
+use App\Http\Livewire\SensorDetail;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,15 +24,16 @@ Route::get('/sensor',                [App\Http\Controllers\HomeController::class
 
 
 Route::get('/dashboard',                      MapLivewire::class);
-
+Route::post('/sensordetailtest',               SensorDetail::class);
 
 Route::get('/sensor/activation',        [App\Http\Controllers\SensorController::class, 'index']);
 Route::get('/activate-a-sensorku',      [App\Http\Controllers\SensorController::class, 'activationProcess']);
 
-Route::post('/sensor/modify',           [App\Http\Controllers\SensorController::class, 'indexModify']);
+Route::post('/sensor/detail',           [App\Http\Controllers\SensorController::class, 'indexDetail']);
 Route::post('/save-modify',             [App\Http\Controllers\SensorController::class, 'updateSensor']);
 
 Route::post('/add-bookmark',            [App\Http\Controllers\SensorController::class, 'addBookmark']);
+Route::post('/remove-bookmark',            [App\Http\Controllers\SensorController::class, 'removeBookmark']);
 
 Route::post('/api/sensor/test', [App\Http\Controllers\ApiController::class, 'test']);
 Route::post('/api/sensor/update', [App\Http\Controllers\ApiController::class, 'update']);

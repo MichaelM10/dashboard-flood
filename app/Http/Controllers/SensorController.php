@@ -44,11 +44,11 @@ class SensorController extends Controller
         }
     }
 
-    public function indexModify(Request $request){
+    public function indexDetail(Request $request){
 
         $sensor = json_decode($request->sensor);
 
-        return view("modify.modify",['sensor' => $sensor]);
+        return view("sensor.details",['sensor' => $sensor]);
     }
 
     public function updateSensor(Request $request){
@@ -82,6 +82,6 @@ class SensorController extends Controller
 
     public function removeBookmark(Request $request){
         Bookmark::where('user_id', Auth::user()->id)->where('sensor_id', $request->sensor_id)->delete();
-        return redirect('/dashboard');
+        return redirect('/sensor');
     }
 }
