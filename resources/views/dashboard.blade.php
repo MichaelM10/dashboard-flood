@@ -119,7 +119,7 @@
             try {
                 const response = await fetch(
                     // 'https://api.wheretheiss.at/v1/satellites/25544'
-                    'http://127.0.0.1:8000/api/sensor/geoJson',
+                    'https://sensorku.site/api/sensor/geoJson',
                     { method: 'GET' }
                 );
 
