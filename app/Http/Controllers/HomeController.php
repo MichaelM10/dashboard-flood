@@ -30,4 +30,8 @@ class HomeController extends Controller
         $sensors = Sensor::with('user')->with('sensorField')->where('user_id', Auth::user()->id)->get();
         return view('sensor-index', ['bookmarks' => $bookmarks, 'sensors' => $sensors]);
     }
+
+    public function dashboard(){
+        return view('dashboard');
+    }
 }

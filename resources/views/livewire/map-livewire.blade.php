@@ -8,6 +8,9 @@
                     <div wire:ignore id='map' style='width: 100%; height: 70vh;'></div>
                 </div>
             </div>
+            <button wire:click="$emitSelf('refresh')" class="btn btn-primary w-100 mt-3">
+                Refresh
+            </button>
         </div>
         <div class="col-md-4">
             <div class="card">
@@ -36,11 +39,12 @@
             center: defaultLocation,
             zoom: 3.7
         });
-                    
+
         const loadLocations = (geoJson) => {
+            console.log({geoJson});
             geoJson.features.forEach((sensor) => {
                 const {geometry, properties} = sensor;
-                const {sensorId, sensorName, status, sensorDescription} = properties
+                const {sensorId, sensorName, status, sensorDescription, waterLevel} = properties
 
                 let markerElement = document.createElement('div')
                 markerElement.className = 'marker' + sensorId
@@ -66,6 +70,10 @@
                                 <td>Description</td>
                                 <td>${sensorDescription}</td>
                             </tr>
+                            <tr>
+                                <td>Water Level</td>
+                                <td>${waterLevel}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -85,7 +93,7 @@
             })
         }
 
-        loadLocations({!!  $geoJson !!})
+        loadLocations({!! $geoJson !!})
 
         const style = "outdoors-v11"
         //light-v10, outdoors-v11, satellite-v9, streets-v11, dark-v10
