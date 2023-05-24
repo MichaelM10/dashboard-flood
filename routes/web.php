@@ -23,8 +23,8 @@ Auth::routes();
 Route::get('/sensor',                [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 
-Route::get('/dashboard',                      MapLivewire::class);
-Route::get('/dashboardNew',                   [App\Http\Controllers\HomeController::class, 'dashboard']);
+// Route::get('/dashboard',                      MapLivewire::class);
+Route::get('/dashboard',                   [App\Http\Controllers\HomeController::class, 'dashboard']);
 
 Route::post('/sensordetailtest',               SensorDetail::class);
 
