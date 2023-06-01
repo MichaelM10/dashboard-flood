@@ -15,6 +15,10 @@ use App\Http\Livewire\SensorDetail;
 |
 */
 
+if (env('APP_ENV') === 'production') {
+    URL::forceSchema('https');
+}
+
 Route::redirect('/','/dashboard');
 Route::redirect('/home','/dashboard');
 
