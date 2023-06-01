@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AllowHTTP extends Middleware
+class AllowHTTP
 {
     /**
      * Handle an incoming request.
