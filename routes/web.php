@@ -16,7 +16,7 @@ use App\Http\Livewire\SensorDetail;
 */
 
 if (env('APP_ENV') === 'production') {
-    URL::forceSchema('https');
+    \URL::forceSchema('https');
 }
 
 Route::redirect('/','/dashboard');
@@ -44,4 +44,4 @@ Route::post('/remove-bookmark',            [App\Http\Controllers\SensorControlle
 //API Gateways
 Route::get('/api/sensor/geoJson', [App\Http\Controllers\ApiController::class, 'getGeoJsonSensorData']);
 Route::post('/api/sensor/test', [App\Http\Controllers\ApiController::class, 'test']);
-Route::post('/api/sensor/send', [MapLivewire::class, 'updateSensor']);
+Route::post('/api/sensor/send', [MapLivewire::class, 'updateSensor'])->withoutMiddleware(['auth']);
