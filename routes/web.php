@@ -40,4 +40,4 @@ Route::post('/remove-bookmark',            [App\Http\Controllers\SensorControlle
 //API Gateways
 Route::get('/api/sensor/geoJson', [App\Http\Controllers\ApiController::class, 'getGeoJsonSensorData']);
 Route::post('/api/sensor/test', [App\Http\Controllers\ApiController::class, 'test']);
-Route::post('/api/sensor/send', [MapLivewire::class, 'updateSensor'])->withoutMiddleware(['auth']);
+Route::post('/api/sensor/send', [MapLivewire::class, 'updateSensor']);
