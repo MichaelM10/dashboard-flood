@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'http://127.0.0.1:8000/api/sensor/*',
-        'https://sensorku.site/api/sensor/*'
+        'https://sensorku.site/api/sensor/*',
+        'http://sensorku.site/api/sensor/*'
     ];
 }
