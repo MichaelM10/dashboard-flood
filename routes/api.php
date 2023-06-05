@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//API Gateways
+Route::get('sensor/geoJson', [App\Http\Controllers\ApiController::class, 'getGeoJsonSensorData']);
+Route::post('sensor/test', [App\Http\Controllers\ApiController::class, 'test']);
+Route::post('sensor/send', [App\Http\Controllers\ApiController::class, 'updateSensor']);
