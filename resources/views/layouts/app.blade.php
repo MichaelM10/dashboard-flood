@@ -29,7 +29,7 @@
     @livewireStyles
 </head>
 <body>
-    <div id="app">
+    <div id="app" style="">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="fs-3 navbar-brand" href="{{ url('/') }}">
@@ -89,10 +89,10 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <div class="py-4" style="height:100%;">
             @yield('content')
             {{ isset($slot) ? $slot : null}}
-        </main>
+        </div>
     </div>
 
 

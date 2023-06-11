@@ -87,7 +87,7 @@ class ApiController extends Controller
                     'status' => $sensor->status,
                     'sensorDescription' => $sensor->description,
                     'waterLevel' => $waterLevelField->field_value,
-                    'html' => "<div style=\"overflow-y, auto; max-height:400px, width:100%\"><table class=\"table table-sm mt-2\"><tbody><tr><td>Sensor Name</td><td>" . $sensor->sensor_name . "</td></tr><tr><td>Status</td><td>" . $sensor->status . "</td></tr><tr><td>Water Level</td><td>" . $waterLevelField->field_value . "</td></tr><tr><td>Description</td><td>" . $sensor->description . "</td></tr></tbody></table></div>"
+                    'html' => "<div style=\"overflow-y, auto; max-height:400px, width:100%\"><table class=\"table table-sm mt-2\"><tbody><tr><td>Station Name</td><td>" . $sensor->sensor_name . "</td></tr><tr><td>Status</td><td>" . $sensor->status . "</td></tr><tr><td>Water Level</td><td>" . $waterLevelField->field_value . " cm</td></tr><tr><td>Description</td><td>" . $sensor->description . "</td></tr></tbody></table></div>"
                 ]
             ];
         }

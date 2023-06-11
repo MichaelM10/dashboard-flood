@@ -48,7 +48,7 @@ class SensorController extends Controller
 
         $sensor = json_decode($request->sensor);
 
-        return view("sensor.details",['sensor' => $sensor]);
+        return view("modify.modify",['sensor' => $sensor]);
     }
 
     public function updateSensor(Request $request){

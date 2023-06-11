@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="row">
+    <div class="row w-75">
         <div class="col md-8">
             <div class="card">
                 <div class="card-header bg-dark text-white">Map</div>

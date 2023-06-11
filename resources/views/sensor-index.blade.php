@@ -134,7 +134,7 @@
                                         <div class="row">
                                             <!-- Modify button -->
                                             <div class="col-sm-3 mx-0">
-                                                <form method="post" class="" action=" {{url('/sensordetailtest')}} ">
+                                                <form method="post" class="" action=" {{url('/sensor/detail')}} ">
                                                     @csrf
                                                     <div class="visually-hidden">
                                                         <input type="text" class="form-control" id="sensor" name="sensor" autocomplete="chrome-off" value="{{ $sensor }}" readonly>
