@@ -59,6 +59,7 @@ class SensorController extends Controller
         $sensor->sensor_name = $request->sensor_name;
         $sensor->visibility = $request->visibility;
         $sensor->access_password = $request->access_password;
+        $sensor->selisih_nol = $request->selisih_nol;
         $sensor->update();
         $success="Data saved successfully!";
         

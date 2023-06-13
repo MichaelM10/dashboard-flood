@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('activation_password');
             $table->string('status');
             $table->timestamps();
+            $table->double('selisih_nol')->default('0');
             
             $table->foreign('user_id')->references('id')->on('users');
         });

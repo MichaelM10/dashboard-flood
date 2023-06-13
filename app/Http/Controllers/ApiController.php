@@ -38,7 +38,12 @@ class ApiController extends Controller
             }
             
             $waterLevelField = SensorField::where([['sensor_id',$sensor_id], ['field_name', "Water Level"]])->first();
-            $waterLevelField->field_value = $water_level;
+            $waterLevelField->field_value = $water_level - $currentSensor->selisih_nol;
+
+            error_log($water_level);
+            error_log($currentSensor->selisih_nol);
+            error_log($waterLevelField);
+
 
             $waterLevelField->save();
             $currentSensor->save();

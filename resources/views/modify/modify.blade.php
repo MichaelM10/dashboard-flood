@@ -44,6 +44,13 @@
                             </div>
                         </div>
 
+                        <div class="row mt-3 justify-content-center">
+                            <div class="col-sm-4">
+                                <label for="selisih_nol" class="form-label">Selisih Nol</label>
+                                <input type="number" class="form-control" id="selisih_nol" name="selisih_nol" value="{{$sensor->selisih_nol}}">
+                            </div>
+                        </div>
+
                         <div class="row">
                             <button type="submit" class="btn btn-primary mt-3 col-sm-3 mx-auto"> {{ __('Save') }} </button>
                         </div>
