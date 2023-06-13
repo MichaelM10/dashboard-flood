@@ -28,7 +28,7 @@ class ApiController extends Controller
         
 
         if($currentSensor->type == 'F'){
-            $water_level = $request->waterLevel;
+            $water_level = $request->waterLevel - $currentSensor->selisih_nol;
             if($water_level <= 10){
                 $currentSensor->status = "BAHAYA";
             }else if($water_level < 20){
@@ -38,12 +38,7 @@ class ApiController extends Controller
             }
             
             $waterLevelField = SensorField::where([['sensor_id',$sensor_id], ['field_name', "Water Level"]])->first();
-            $waterLevelField->field_value = $water_level - $currentSensor->selisih_nol;
-
-            error_log($water_level);
-            error_log($currentSensor->selisih_nol);
-            error_log($waterLevelField);
-
+            $waterLevelField->field_value = $water_level;
 
             $waterLevelField->save();
             $currentSensor->save();
