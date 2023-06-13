@@ -47,7 +47,7 @@
                         <div class="row mt-3 justify-content-center">
                             <div class="col-sm-4">
                                 <label for="selisih_nol" class="form-label">Selisih Nol</label>
-                                <input type="number" class="form-control" id="selisih_nol" name="selisih_nol" value="{{$sensor->selisih_nol}}">
+                                <input type="number" class="form-control" id="selisih_nol" name="selisih_nol" value="{{old('selisih_nol')}}">
                             </div>
                         </div>
 
