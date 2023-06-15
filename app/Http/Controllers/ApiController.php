@@ -39,10 +39,9 @@ class ApiController extends Controller
             
             $waterLevelField = SensorField::where([['sensor_id',$sensor_id], ['field_name', "Water Level"]])->first();
             $waterLevelField->field_value = $water_level;
-
+            
             $waterLevelField->save();
             $currentSensor->save();
-            
         }
 
         //Check for sensor activation from database

@@ -64,7 +64,7 @@ class SensorController extends Controller
         $success="Data saved successfully!";
         
         $request->flash();
-        return view("modify.modify-back",['success' => $success]);
+        return view("modify.modify",['success' => $success]);
     }
 
     public function addBookmark(Request $request){

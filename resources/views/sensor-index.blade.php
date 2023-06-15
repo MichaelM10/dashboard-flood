@@ -47,7 +47,7 @@
                                                 <li>
                                                     <form action="{{url('/sensor/detail')}}" method="POST">
                                                         @csrf
-                                                        <input type="text" class="form-control visually-hidden" id="sensor_id" name="sensor_id" autocomplete="chrome-off" value="{{ $bookmark->sensor->id }}" readonly>
+                                                        <input type="text" class="form-control visually-hidden" id="sensor" name="sensor" autocomplete="chrome-off" value="{{ $bookmark->sensor }}" readonly>
                                                         <input type="submit" class="dropdown-item" value="Detail"/>
                                                     </form>
                                                 </li>
