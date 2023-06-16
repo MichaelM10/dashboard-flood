@@ -60,11 +60,15 @@ class SensorController extends Controller
         $sensor->visibility = $request->visibility;
         $sensor->access_password = $request->access_password;
         $sensor->selisih_nol = $request->selisih_nol;
+
+        $gps_latitude = $sensor->gps_latitude;
+        $gps_longitude = $sensor->gps_longitude;
+
         $sensor->update();
         $success="Data saved successfully!";
         
         $request->flash();
-        return view("modify.modify",['success' => $success]);
+        return view("modify.modify",['success' => $success, 'gps_latitude' => $gps_latitude, 'gps_longitude' => $gps_longitude]);
     }
 
     public function addBookmark(Request $request){
