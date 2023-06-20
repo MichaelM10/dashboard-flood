@@ -29,6 +29,7 @@ class ApiController extends Controller
 
         if($currentSensor->type == 'F'){
             $water_level = $request->waterLevel - $currentSensor->selisih_nol;
+            if($water_level < 0) $water_level = 0;
             if($water_level <= 10){
                 $currentSensor->status = "BAHAYA";
             }else if($water_level < 20){

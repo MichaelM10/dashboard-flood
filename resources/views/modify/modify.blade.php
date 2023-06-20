@@ -83,41 +83,32 @@
                     <div class="col-3">
                         <h6 class="card-subtitle">GPS Details</h6>
                         <div class="row mt-3 pr-0">
+                            <form action="{{url('/sensor/change-location')}}" method="POST">
+                                @csrf
+                                <div class="col-sm-4 visually-hidden" style="width:16vw">
+                                    <label for="sensor_id" class="form-label">{{__('SensorKu Code')}}</label>
+                                    <input type="number" class="form-control" id="sensor_id" name="sensor_id" value="{{ $sensor->id ?? old('sensor_id') }}" readonly>
+                                </div>
+                                <div class="col-sm-4 visually-hidden" style="width:16vw">
+                                    <label for="sensor_name" class="form-label">{{__('Sensor Name')}}</label>
+                                    <input type="string" class="form-control" id="sensor_name" name="sensor_name" value="{{ $sensor->sensor_name ?? old('sensor_name') }}" readonly>
+                                </div>
                                 <div class="col-sm-4 mb-1" style="width:16vw">
                                     <label for="gps_longitude" class="form-label my-0">{{__('Longitude')}}</label>
-                                    <input type="string" style="width:16vw" class="form-control" id="gps_longitude" name="gps_longitude" value="{{ $sensor->gps_longitude ?? $gps_longitude }}" readonly>
+                                    <input type="string" style="width:16vw" class="form-control" id="gps_longitude" name="gps_longitude" value="{{ $sensor->gps_longitude ?? $gps_longitude ?? "Not Set" }}" readonly>
                                 </div>
                                 <div class="col-sm-4 mb-1" style="width:16vw">
                                     <label for="gps_latitude" class="form-label my-0">{{__('Latitude')}}</label>
-                                    <input type="string" style="width:16vw" class="form-control" id="gps_latitude" name="gps_latitude" value="{{ $sensor->gps_latitude ?? $gps_latitude }}" readonly>
+                                    <input type="string" style="width:16vw" class="form-control" id="gps_latitude" name="gps_latitude" value="{{ $sensor->gps_latitude ?? $gps_latitude ?? "Not Set" }}" readonly>
                                 </div>
                                 <div class="col mt-4">
-                                    <button type="submit" class="btn btn-success mx-auto shadow" data-bs-toggle="modal" data-bs-target="#staticBackdropMap" style="width:16vw">
+                                    <button type="submit" class="btn btn-success mx-auto shadow" style="width:16vw">
                                         <i class="bi bi-geo"></i>{{ __(' Adjust Location') }} 
                                     </button>
                                 </div>
+                            </form>
                         </div>
                     </div>
-                    
-                    <!-- Modal -->
-                    <div class="modal fade" id="staticBackdropMap" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                            ...
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Confirm New Location</button>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    <!-- END OF MODAL -->
 
                 </div>
                 <!-- END OF CARD BODY -->
@@ -146,10 +137,12 @@
     var gps_lat = document.getElementById('gps_latitude').value;
     var sensor_id = document.getElementById('sensor_id').value;
     var getJsonLink = 'https://sensorku.site/api/sensor/geoJsonOne/' + sensor_id;
-    alert(getJsonLink);
+    var defaultLocation = [117.48878532291059, -2.9365280716009607];
 
-    const defaultLocation = [gps_long, gps_lat];
-    // const defaultLocation = [117.48878532291059, -2.9365280716009607];
+    if(gps_long === 'Not Set'){
+    }else{
+        defaultLocation = [gps_long, gps_lat];
+    }
 
     var map = new mapboxgl.Map({
         container: 'map',
@@ -217,17 +210,17 @@
 
         // Change the cursor to a pointer when the mouse is over the places layer.
         map.on('mouseenter', 'sensors', () => {
-        map.getCanvas().style.cursor = 'pointer';
+            map.getCanvas().style.cursor = 'pointer';
         });
         
         // Change it back to a pointer when it leaves.
         map.on('mouseleave', 'sensors', () => {
-        map.getCanvas().style.cursor = '';
+            map.getCanvas().style.cursor = '';
         });
 
         console.log(geoJson.features);
 
-        // Update the source from the API every 2 seconds.
+        // Update the source from the API every 10 seconds.
         const updateSource = setInterval(async () => {
             const geoJson = await getLocation(updateSource);
             map.getSource('sensors').setData(geoJson);
@@ -237,7 +230,6 @@
             // Make a GET request to the API and return the location of the ISS.
             try {
                 const response = await fetch(
-                    // 'https://api.wheretheiss.at/v1/satellites/25544'
                     getJsonLink,
                     { method: 'GET' }
                 );

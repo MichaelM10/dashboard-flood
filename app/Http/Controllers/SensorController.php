@@ -51,6 +51,48 @@ class SensorController extends Controller
         return view("modify.modify",['sensor' => $sensor]);
     }
 
+    public function indexChangeLocation(Request $request){
+
+        $sensor_id = $request->sensor_id;
+        $sensor_name = $request->sensor_name;
+        $gps_longitude = $request->gps_longitude;
+        $gps_latitude = $request->gps_latitude;
+        // error_log($sensor_name);
+        // error_log($sensor_id);
+        return view("modify.change-location",['sensor_id' => $sensor_id, 'sensor_name' => $sensor_name, 'gps_longitude' => $gps_longitude, 'gps_latitude'=>$gps_latitude]);
+    }
+
+    public function saveNewLocation(Request $request){
+        $request_sensor_id = $request->sensor_id;
+        $sensor_name = $request->sensor_name;
+        $new_longitude = $request->new_longitude;
+        $new_latitude = $request->new_latitude;
+
+        $old_longitude = $request->old_longitude;
+        $old_latitude = $request->old_latitude;
+
+        $return_long = $old_longitude;
+        $return_lat = $old_latitude;
+        $message="Nothing Changed";
+
+        if($new_longitude == null || $new_latitude == null){
+            $message="Nothing Changed";
+        }else{
+            $sensor = Sensor::where('id', $request_sensor_id)->first();
+    
+            $sensor->gps_longitude = $new_longitude;
+            $sensor->gps_latitude = $new_latitude;
+            
+            $sensor->save();
+    
+            $return_long = $new_longitude;
+            $return_lat = $new_latitude;
+            $message="Station/sensor location changed successfully!";
+        }
+
+        return view("modify.change-location", ['message' => $message, 'sensor_id' => $request_sensor_id, 'gps_longitude' => $return_long, 'gps_latitude' => $return_lat, 'sensor_name' => $sensor_name]);
+    }
+
     public function updateSensor(Request $request){
         $request_sensor_id = $request->sensor_id;
         $sensor = Sensor::where('id', $request_sensor_id)->first();

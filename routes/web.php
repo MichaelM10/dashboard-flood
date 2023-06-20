@@ -32,6 +32,8 @@ Route::get('/sensor/activation',        [App\Http\Controllers\SensorController::
 Route::get('/activate-a-sensorku',      [App\Http\Controllers\SensorController::class, 'activationProcess']);
 
 Route::post('/sensor/detail',           [App\Http\Controllers\SensorController::class, 'indexDetail']);
+Route::post('/sensor/change-location',           [App\Http\Controllers\SensorController::class, 'indexChangeLocation']);
+Route::post('/sensor/save-new-location', [App\Http\Controllers\SensorController::class, 'saveNewLocation']);
 Route::post('/save-modify',             [App\Http\Controllers\SensorController::class, 'updateSensor']);
 
 Route::post('/add-bookmark',            [App\Http\Controllers\SensorController::class, 'addBookmark']);
