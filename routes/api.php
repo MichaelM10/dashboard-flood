@@ -20,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //API Gateways
 Route::get('sensor/geoJson', [App\Http\Controllers\ApiController::class, 'getGeoJsonSensorData']);
+Route::get('sensor/geoJsonOne/{id}', [App\Http\Controllers\ApiController::class, 'getOneGeoJsonSensorData']);
 Route::post('sensor/test', [App\Http\Controllers\ApiController::class, 'test']);
 Route::post('sensor/send', [App\Http\Controllers\ApiController::class, 'updateSensor']);

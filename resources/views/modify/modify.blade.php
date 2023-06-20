@@ -42,9 +42,9 @@
                                 </div>
                                 <div class="col-sm-4" style="width:16vw">
                                     <label for="visibility" class="form-label">{{__('Public Visibility')}}</label>
-                                    <select class="form-select" name="visibility" id="visibility" value=" {{ $sensor->visibility ?? old('visibility') }} ">
-                                        <option>Public</option>
-                                        <option>Private</option>
+                                    <select class="form-select" name="visibility" id="visibility" value=" {{ $sensor->visibility ?? old('visibility') }} " disabled>
+                                        <option readonly>Public</option>
+                                        <option readonly>Private</option>
                                     </select>
                                 </div>
                             </div>
@@ -59,37 +59,66 @@
                                 </div>
                             </div>
 
-                            <!-- Save Button -->
+                            <!-- SAVE BUTTON -->
                             <div class="row mt-5 pr-0">    
                                 <div class="col">
-                                    <button type="submit" class="btn btn-primary mx-auto" style="width:32vw"> <i class="bi bi-save"></i>{{ __(' Save') }} </button>
+                                    <button type="submit" class="btn btn-primary mx-auto shadow" style="width:32vw"> <i class="bi bi-save"></i>{{ __(' Save') }} </button>
                                 </div>
                             </div>
 
                         </form>
                     </div>
-                    <!-- GENERAL FIELD COLUMN -->
+                
+
+
                     <!-- MAPS COLUMN -->
                     <div class="col-3">
                         <h6 class="card-subtitle">Location</h6>
-                        <div class="mt-3 mx-auto border" id="map" style="width: 30vh; height: 30vh"></div>
+                        <div class="mt-3 mx-auto border border-2 border-secondary shadow rounded" id="map" style="width: 30vh; height: 30vh"></div>
                     </div>
-                    <!-- MAPS COLUMN -->
+
+
+
                     <!-- MAP DETAIL COLUMN -->
                     <div class="col-3">
                         <h6 class="card-subtitle">GPS Details</h6>
                         <div class="row mt-3 pr-0">
-                            <div class="col-sm-4" style="width:16vw">
-                                <label for="gps_longitude" class="form-label">{{__('Longitude')}}</label>
-                                <input type="string" class="form-control" id="gps_longitude" name="gps_longitude" value="{{ $sensor->gps_longitude ?? $gps_longitude }}" readonly>
-                            </div>
-                            <div class="col-sm-4" style="width:16vw">
-                                <label for="gps_latitude" class="form-label">{{__('Latitude')}}</label>
-                                <input type="string" class="form-control" id="gps_latitude" name="gps_latitude" value="{{ $sensor->gps_latitude ?? $gps_latitude }}" readonly>
-                            </div>
+                                <div class="col-sm-4 mb-1" style="width:16vw">
+                                    <label for="gps_longitude" class="form-label my-0">{{__('Longitude')}}</label>
+                                    <input type="string" style="width:16vw" class="form-control" id="gps_longitude" name="gps_longitude" value="{{ $sensor->gps_longitude ?? $gps_longitude }}" readonly>
+                                </div>
+                                <div class="col-sm-4 mb-1" style="width:16vw">
+                                    <label for="gps_latitude" class="form-label my-0">{{__('Latitude')}}</label>
+                                    <input type="string" style="width:16vw" class="form-control" id="gps_latitude" name="gps_latitude" value="{{ $sensor->gps_latitude ?? $gps_latitude }}" readonly>
+                                </div>
+                                <div class="col mt-4">
+                                    <button type="submit" class="btn btn-success mx-auto shadow" data-bs-toggle="modal" data-bs-target="#staticBackdropMap" style="width:16vw">
+                                        <i class="bi bi-geo"></i>{{ __(' Adjust Location') }} 
+                                    </button>
+                                </div>
                         </div>
                     </div>
-                    <!-- MAP DETAIL COLUMN -->
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdropMap" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            ...
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Confirm New Location</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- END OF MODAL -->
+
                 </div>
                 <!-- END OF CARD BODY -->
             </div>
@@ -115,17 +144,24 @@
     mapboxgl.accessToken = '{{env("MAPBOX_KEY")}}';
     var gps_long = document.getElementById('gps_longitude').value;
     var gps_lat = document.getElementById('gps_latitude').value;
-    
+    var sensor_id = document.getElementById('sensor_id').value;
+    var getJsonLink = 'https://sensorku.site/api/sensor/geoJsonOne/' + sensor_id;
+    alert(getJsonLink);
+
     const defaultLocation = [gps_long, gps_lat];
     // const defaultLocation = [117.48878532291059, -2.9365280716009607];
+
     var map = new mapboxgl.Map({
         container: 'map',
         center: defaultLocation,
         zoom: 3.7
     });
+
     const style = "outdoors-v11"
     //light-v10, outdoors-v11, satellite-v9, streets-v11, dark-v10
     map.setStyle(`mapbox://styles/mapbox/${style}`);
+
+    //Enable Nav Buttons
     map.addControl(new mapboxgl.NavigationControl());
 
     map.on('load', async () => {
@@ -202,7 +238,7 @@
             try {
                 const response = await fetch(
                     // 'https://api.wheretheiss.at/v1/satellites/25544'
-                    'https://sensorku.site/api/sensor/geoJson',
+                    getJsonLink,
                     { method: 'GET' }
                 );
 

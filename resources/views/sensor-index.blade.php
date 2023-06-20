@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Sensor')
 
 @section('content')
 <div class="container">
@@ -26,9 +26,7 @@
                     <span href="{{url('/sensor')}}">
                         <div class="card">
                             <div class="card-body">
-
                                 <div class="row">
-
                                     <div class="col-md-9">
                                         <div class="card-title">
                                             <h6>{{$bookmark->sensor->sensor_name}}</h6>
@@ -118,7 +116,7 @@
                                             <div class="col-sm-2">
                                                 <div class="row">
                                                     <div class="col-9">
-                                                        <p class="fw-normal card-text">Visibility </p>
+                                                        <p class="fw-normal card-text">Status </p>
                                                     </div>
                                                     <div class="col-1">
                                                         <p class="fw-normal card-text"> : </p>
@@ -126,7 +124,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-1">
-                                                <p class="fw-light card-text"> {{ $sensor->visibility }} </p>
+                                                <p class="fw-light card-text"> {{ $sensor->status }} </p>
                                             </div>
                                         </div>
 

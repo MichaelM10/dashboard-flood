@@ -7,7 +7,7 @@
     <div class="row w-75">
         <div class="col md-8">
             <div class="card">
-                <div class="card-header bg-dark text-white">Map</div>
+                <div class="card-header bg-dark text-white"><i class="bi bi-map"></i> Map</div>
                 <div class="card-body gx-0 px-0 py-0">
                     <div id='map' style='width: 100%; height: 70vh;'></div>
                 </div>
@@ -93,6 +93,7 @@
             .setLngLat(coordinates)
             .setHTML(htmlContent)
             .setMaxWidth("800px")
+            .setOffset(10)
             .addTo(map);
         });
 
@@ -108,7 +109,7 @@
 
         console.log(geoJson.features);
 
-        // Update the source from the API every 2 seconds.
+        // Update the source from the API every 10 seconds.
         const updateSource = setInterval(async () => {
             const geoJson = await getLocation(updateSource);
             map.getSource('sensors').setData(geoJson);
@@ -118,7 +119,6 @@
             // Make a GET request to the API and return the location of the ISS.
             try {
                 const response = await fetch(
-                    // 'https://api.wheretheiss.at/v1/satellites/25544'
                     'https://sensorku.site/api/sensor/geoJson',
                     { method: 'GET' }
                 );
