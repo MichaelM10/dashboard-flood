@@ -111,10 +111,16 @@
     var gps_long = document.getElementById('old_longitude').value;
     var gps_lat = document.getElementById('old_latitude').value;
     var sensor_id = document.getElementById('sensor_id').value;
-    var getJsonLink = 'https://sensorku.site/api/sensor/geoJsonOne/' + sensor_id;
+    // var getJsonLink = 'http://127.0.0.1:8000/api/sensor/geoJsonOne/' + sensor_id;
+    // var getJsonLink = 'https://sensorku.site/api/sensor/geoJsonOne/' + sensor_id;
+    var defaultLocation = [117.48878532291059, -2.9365280716009607];
 
-    const defaultLocation = [gps_long, gps_lat];
-    // const defaultLocation = [117.48878532291059, -2.9365280716009607];
+    
+
+
+    if(gps_long !== "Not Set" ){
+        defaultLocation = [gps_long, gps_lat];
+    } 
 
     var map = new mapboxgl.Map({
         container: 'map',
@@ -122,11 +128,20 @@
         zoom: 3.7
     });
 
+    if(gps_long !== "Not Set" ){
+        const marker1 = new mapboxgl.Marker({
+            color:"#2E86C1"
+        })
+        .setLngLat([gps_long, gps_lat])
+        .addTo(map);
+    } 
     const marker1 = new mapboxgl.Marker({
-        color:"#2E86C1"
-    })
-    .setLngLat([gps_long, gps_lat])
-    .addTo(map);
+            color:"#2E86C1"
+        })
+        .setLngLat([gps_long, gps_lat])
+        .addTo(map);
+
+    
 
     var marker = new mapboxgl.Marker({
         color: "#A4A4A4",

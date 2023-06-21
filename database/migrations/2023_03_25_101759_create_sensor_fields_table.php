@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('field_name');
             $table->string('field_value')->nullable();
             $table->string('description')->nullable();
-            $table->string('selisih_nol')->nullable();
             // $table->integer('integer_value')->nullable;
             // $table->double('double_value')->nullable;
             // $table->string('string_value')->nullable;

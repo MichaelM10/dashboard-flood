@@ -74,6 +74,10 @@ class ApiController extends Controller
         $arrSensors = [];
         foreach($sensors as $sensor){
             $waterLevelField = SensorField::where([['sensor_id',$sensor->id], ['field_name', "Water Level"]])->first();
+            $waterLevel;
+            if($waterLevelField->field_value == null){
+                $waterLevel = "-----";
+            }else $waterLevel = $waterLevelField->field_value;
 
             $arrSensors[] = [
                 'type' => 'Feature',
@@ -86,8 +90,8 @@ class ApiController extends Controller
                     'sensorName' => $sensor->sensor_name,
                     'status' => $sensor->status,
                     'sensorDescription' => $sensor->description,
-                    'waterLevel' => $waterLevelField->field_value,
-                    'html' => "<div style=\"overflow-y, auto; max-height:400px, width:100%\"><table class=\"table table-sm mt-2\"><tbody><tr><td>Station Name</td><td>" . $sensor->sensor_name . "</td></tr><tr><td>Status</td><td>" . $sensor->status . "</td></tr><tr><td>Water Level</td><td>" . $waterLevelField->field_value . " cm</td></tr><tr><td>Description</td><td>" . $sensor->description . "</td></tr></tbody></table></div>"
+                    'waterLevel' => $waterLevel,
+                    'html' => "<div style=\"overflow-y, auto; max-height:400px, width:100%\"><table class=\"table table-sm mt-2\"><tbody><tr><td>Station Name</td><td>" . $sensor->sensor_name . "</td></tr><tr><td>Status</td><td>" . $sensor->status . "</td></tr><tr><td>Water Level</td><td>" . $waterLevel . " cm</td></tr><tr><td>Description</td><td>" . $sensor->description . "</td></tr></tbody></table></div>"
                 ]
             ];
         }

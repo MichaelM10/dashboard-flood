@@ -120,6 +120,8 @@
             try {
                 const response = await fetch(
                     'https://sensorku.site/api/sensor/geoJson',
+                    // 'http://127.0.0.1:8000/api/sensor/geoJson',
+
                     { method: 'GET' }
                 );
 

@@ -115,16 +115,11 @@
             </div>
             <!-- END OF CARD -->
             <!-- Notifications -->
-            @if (\Session::has('error'))
-                <div class="alert alert-warning mt-5" role="alert">
-                    {{ \Session::get('error') }}
+            @isset($success)
+                <div class="alert alert-success mt-1" role="alert">
+                    {{ $success }}
                 </div>
-            @endif
-            @if (\Session::has('success'))
-                <div class="alert alert-success mt-5" role="alert">
-                    {{ \Session::get('success') }}
-                </div>
-            @endif
+            @endisset
         </div>
     </div>
 </div>

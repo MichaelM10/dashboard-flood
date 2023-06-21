@@ -166,7 +166,7 @@
                             <!-- End of Card Body -->
                         </div>
                     @empty
-                        <h5 class="my-1 card-title">Place a Sensor not found Image here</h5>
+                        <h5 class="my-1 card-title">Sensor not found</h5>
                         <p class="mb-5 mt-2 card-text text-black-50"> {{ __("You haven't activated any sensors . . .") }} </p>
                     @endforelse
                     <a href="{{ url('/sensor/activation') }}" class="btn btn-primary my-2 mt-4"> {{ __('Activate a new SensorKu') }} </a>
