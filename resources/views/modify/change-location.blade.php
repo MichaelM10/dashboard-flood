@@ -135,13 +135,6 @@
         .setLngLat([gps_long, gps_lat])
         .addTo(map);
     } 
-    const marker1 = new mapboxgl.Marker({
-            color:"#2E86C1"
-        })
-        .setLngLat([gps_long, gps_lat])
-        .addTo(map);
-
-    
 
     var marker = new mapboxgl.Marker({
         color: "#A4A4A4",
