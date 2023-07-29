@@ -70,7 +70,7 @@ class ApiController extends Controller
 
     public function getGeoJsonSensorData(){
         $sensors = Sensor::orderBy('created_at','desc')->get();
-        $description = "Sungai Ciliwung";
+        $description = "Alat Pembaca Ketinggian Air pada Sungai Ciliwung, Jembatan Tomang Raya";
         $arrSensors = [];
         foreach($sensors as $sensor){
             $waterLevelField = SensorField::where([['sensor_id',$sensor->id], ['field_name', "Water Level"]])->first();
