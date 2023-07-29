@@ -79,7 +79,8 @@
         const sensorName = e.features[0].properties.sensorName;
         const status = e.features[0].properties.status;
         const waterLevel = e.features[0].properties.waterLevel;
-        const description = e.features[0].properties.sensorDescription;
+        const description = 'Alat Pembaca Ketinggian Air pada Sungai Ciliwung, Jembatan Jalan Tomang Raya';
+        // const description = e.features[0].properties.sensorDescription;
         const htmlContent = e.features[0].properties.html;
 
         // Ensure that if the map is zoomed out such that multiple
