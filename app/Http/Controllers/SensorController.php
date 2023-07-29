@@ -102,6 +102,7 @@ class SensorController extends Controller
         $sensor->visibility = $request->visibility;
         $sensor->access_password = $request->access_password;
         $sensor->selisih_nol = $request->selisih_nol;
+        $sensor->description = $request->description;
 
         $gps_latitude = $sensor->gps_latitude;
         $gps_longitude = $sensor->gps_longitude;

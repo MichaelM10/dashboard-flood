@@ -70,7 +70,6 @@ class ApiController extends Controller
 
     public function getGeoJsonSensorData(){
         $sensors = Sensor::orderBy('created_at','desc')->get();
-        $description = "Alat Pembaca Ketinggian Air pada Sungai Ciliwung, Jembatan Tomang Raya";
         $arrSensors = [];
         foreach($sensors as $sensor){
             $waterLevelField = SensorField::where([['sensor_id',$sensor->id], ['field_name', "Water Level"]])->first();
@@ -89,9 +88,9 @@ class ApiController extends Controller
                     'sensorId' => $sensor->id,
                     'sensorName' => $sensor->sensor_name,
                     'status' => $sensor->status,
-                    'sensorDescription' => $description,
+                    'sensorDescription' => $sensor->description,
                     'waterLevel' => $waterLevel,
-                    'html' => "<div style=\"overflow-y, auto; max-height:400px, width:100%\"><table class=\"table table-sm mt-2\"><tbody><tr><td>Station Name</td><td>" . $sensor->sensor_name . "</td></tr><tr><td>Status</td><td>" . $sensor->status . "</td></tr><tr><td>Water Level</td><td>" . $waterLevel . " cm</td></tr><tr><td>Description</td><td>" . $description . "</td></tr></tbody></table></div>"
+                    'html' => "<div style=\"overflow-y, auto; max-height:400px, width:100%\"><table class=\"table table-sm mt-2\"><tbody><tr><td>Station Name</td><td>" . $sensor->sensor_name . "</td></tr><tr><td>Status</td><td>" . $sensor->status . "</td></tr><tr><td>Water Level</td><td>" . $waterLevel . " cm</td></tr><tr><td>Description</td><td>" . $sensor->description . "</td></tr></tbody></table></div>"
                 ]
             ];
         }

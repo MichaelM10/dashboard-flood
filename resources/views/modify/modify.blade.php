@@ -58,6 +58,13 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div class="row mt-3 pr-0">
+                                <div class="col-sm-4" style="width:32vw">
+                                    <label for="description" class="form-label">{{__('Description')}}</label>
+                                    <textarea type="textarea" class="form-control" id="description" rows="3" name="description" value="{{ $sensor->description ?? old('description') }}"></textarea>
+                                </div>
+                            </div>
 
                             <!-- SAVE BUTTON -->
                             <div class="row mt-5 pr-0">    
