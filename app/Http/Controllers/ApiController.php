@@ -89,7 +89,7 @@ class ApiController extends Controller
                     'sensorId' => $sensor->id,
                     'sensorName' => $sensor->sensor_name,
                     'status' => $sensor->status,
-                    'sensorDescription' => $sensor->description,
+                    'sensorDescription' => "Alat Pembaca Ketinggian Air pada Sungai Ciliwung, Jembatan Jalan Tomang Raya",
                     'waterLevel' => $waterLevel,
                     'html' => "<div style=\"overflow-y, auto; max-height:400px, width:100%\"><table class=\"table table-sm mt-2\"><tbody><tr><td>Station Name</td><td>" . $sensor->sensor_name . "</td></tr><tr><td>Status</td><td>" . $sensor->status . "</td></tr><tr><td>Water Level</td><td>" . $waterLevel . " cm</td></tr><tr><td>Description</td><td>" . $sensor->description . "</td></tr></tbody></table></div>"
                 ]
